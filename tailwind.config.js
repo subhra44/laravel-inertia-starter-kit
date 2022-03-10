@@ -1,20 +1,59 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/js/**/*.vue',
+        // prettier-ignore
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
     ],
-
     theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        colors: {
+            transparent: 'transparent',
+            current: 'currentColor',
+            black: colors.black,
+            white: colors.white,
+            red: colors.red,
+            orange: {
+                100: '#ffe9db',
+                300: '#ffbd92',
+                400: '#ff9249',
+                500: '#ff6600',
+                600: '#b64900',
+                800: '#6d2c00',
+                900: '#240f00',
+            },
+            yellow: colors.yellow,
+            green: colors.green,
+            gray: colors.slate,
+            indigo: {
+                100: '#e6e8ff',
+                300: '#b2b7ff',
+                400: '#7886d7',
+                500: '#6574cd',
+                600: '#5661b3',
+                800: '#2f365f',
+                900: '#191e38',
             },
         },
+        extend: {
+            borderColor: theme => ({
+                DEFAULT: theme('colors.gray.200', 'currentColor'),
+            }),
+            fontFamily: {
+                sans: ['Cerebri Sans', ...defaultTheme.fontFamily.sans],
+            },
+            boxShadow: theme => ({
+                outline: '0 0 0 2px ' + theme('colors.indigo.500'),
+            }),
+            fill: theme => theme('colors'),
+        },
     },
-
-    plugins: [require('@tailwindcss/forms')],
-};
+    variants: {
+        extend: {
+            fill: ['focus', 'group-hover'],
+        },
+    },
+    plugins: [],
+}
