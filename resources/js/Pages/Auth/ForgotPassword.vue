@@ -16,10 +16,7 @@
             address and we will email you a password reset link that will allow
             you to choose a new one.
           </div>
-          <div
-            v-if="status"
-            class="mt-4 mb-4 text-sm font-medium text-green-600"
-          >
+          <div v-if="status" class="mt-4 mb-4 font-medium text-green-600">
             {{ status }}
           </div>
 

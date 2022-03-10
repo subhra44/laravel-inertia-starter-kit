@@ -1,85 +1,115 @@
-<script setup>
-import BreezeButton from '@/Components/Button.vue'
-import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import BreezeInput from '@/Components/Input.vue'
-import BreezeLabel from '@/Components/Label.vue'
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
-import { Head, useForm } from '@inertiajs/inertia-vue3'
-
-const props = defineProps({
-  email: String,
-  token: String,
-})
-
-const form = useForm({
-  token: props.token,
-  email: props.email,
-  password: '',
-  password_confirmation: '',
-})
-
-const submit = () => {
-  form.post(route('password.update'), {
-    onFinish: () => form.reset('password', 'password_confirmation'),
-  })
-}
-</script>
-
 <template>
-  <BreezeGuestLayout>
-    <Head title="Reset Password" />
+  <Head title="Reset Password" />
 
-    <BreezeValidationErrors class="mb-4" />
+  <div class="flex min-h-screen items-center justify-center bg-indigo-800 p-6">
+    <div class="w-full max-w-md">
+      <logo class="mx-auto block h-16 w-auto max-w-xs fill-white" height="50" />
+      <form
+        class="mt-8 overflow-hidden rounded-lg bg-white shadow-xl"
+        @submit.prevent="submit"
+      >
+        <div class="px-10 py-8">
+          <h1 class="text-center text-base font-bold">Welcome Back!</h1>
+          <div class="mx-auto mt-2 w-24 border-b-2" />
+          <div v-if="status" class="mt-4 mb-4 font-medium text-green-600">
+            {{ status }}
+          </div>
 
-    <form @submit.prevent="submit">
-      <div>
-        <BreezeLabel for="email" value="Email" />
-        <BreezeInput
-          id="email"
-          v-model="form.email"
-          type="email"
-          class="mt-1 block w-full"
-          required
-          autofocus
-          autocomplete="username"
-        />
-      </div>
+          <div class="mt-6 mb-8 flex justify-center">
+            <a :href="route('auth.microsoft')" class="mr-2 flex items-center">
+              <img
+                class="h-8 w-auto"
+                src="/images/ms_signin_dark.svg"
+                alt="Microsoft"
+              />
+            </a>
+          </div>
 
-      <div class="mt-4">
-        <BreezeLabel for="password" value="Password" />
-        <BreezeInput
-          id="password"
-          v-model="form.password"
-          type="password"
-          class="mt-1 block w-full"
-          required
-          autocomplete="new-password"
-        />
-      </div>
+          <div class="horizontal-line border-b border-gray-300 text-center">
+            <span class="bg-white px-4 text-gray-600">or</span>
+          </div>
 
-      <div class="mt-4">
-        <BreezeLabel
-          for="password_confirmation"
-          value="Confirm Password"
-        />
-        <BreezeInput
-          id="password_confirmation"
-          v-model="form.password_confirmation"
-          type="password"
-          class="mt-1 block w-full"
-          required
-          autocomplete="new-password"
-        />
-      </div>
+          <text-input
+            v-model="form.email"
+            :error="form.errors.email"
+            class="mt-4"
+            label="Email"
+            type="email"
+            required
+            autofocus
+            autocapitalize="off"
+            autocomplete="username"
+          />
+          <text-input
+            v-model="form.password"
+            :error="form.errors.password"
+            class="mt-4"
+            label="Password"
+            type="password"
+            required
+            autocomplete="new-password"
+          />
 
-      <div class="mt-4 flex items-center justify-end">
-        <BreezeButton
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-        >
-          Reset Password
-        </BreezeButton>
-      </div>
-    </form>
-  </BreezeGuestLayout>
+          <text-input
+            v-model="form.password_confirmation"
+            :error="form.errors.password_confirmation"
+            class="mt-4"
+            label="Confirm Password"
+            type="password"
+            required
+            autocomplete="new-password"
+          />
+        </div>
+        <div class="flex border-t border-gray-100 bg-gray-100 px-10 py-4">
+          <loading-button
+            :loading="form.processing"
+            class="btn-orange ml-auto font-semibold uppercase"
+            type="submit"
+          >
+            Reset Password
+          </loading-button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
+
+<script>
+import Logo from "@/Components/Logo";
+import TextInput from "@/Components/TextInput";
+import LoadingButton from "@/Components/LoadingButton";
+import { Link, Head } from "@inertiajs/inertia-vue3";
+
+export default {
+  // metaInfo: { title: 'Login' },
+  components: {
+    LoadingButton,
+    Logo,
+    TextInput,
+    Link,
+    Head,
+  },
+  props: {
+    status: String,
+    email: String,
+    token: String,
+  },
+  data() {
+    return {
+      form: this.$inertia.form({
+        token: this.token,
+        email: this.email,
+        password: "",
+        password_confirmation: "",
+      }),
+    };
+  },
+  methods: {
+    submit() {
+      this.form.post(this.route("password.update"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
+      });
+    },
+  },
+};
+</script>

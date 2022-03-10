@@ -11,10 +11,7 @@
         <div class="px-10 py-8">
           <h1 class="text-center text-base font-bold">Register</h1>
           <div class="mx-auto mt-2 w-24 border-b-2" />
-          <div
-            v-if="status"
-            class="mt-4 mb-4 text-sm font-medium text-green-600"
-          >
+          <div v-if="status" class="mt-4 mb-4 font-medium text-green-600">
             {{ status }}
           </div>
 
