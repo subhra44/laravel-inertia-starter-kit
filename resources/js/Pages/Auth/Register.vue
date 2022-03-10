@@ -84,7 +84,7 @@
           </Link>
           <loading-button
             :loading="form.processing"
-            class="btn-orange ml-auto"
+            class="btn-orange ml-auto font-semibold uppercase"
             type="submit"
           >
             Register
