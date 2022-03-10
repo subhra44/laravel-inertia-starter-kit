@@ -9,24 +9,10 @@
         @submit.prevent="submit"
       >
         <div class="px-10 py-8">
-          <h1 class="text-center text-base font-bold">Welcome Back!</h1>
+          <h1 class="text-center text-base font-bold">Reset Password</h1>
           <div class="mx-auto mt-2 w-24 border-b-2" />
           <div v-if="status" class="mt-4 mb-4 font-medium text-green-600">
             {{ status }}
-          </div>
-
-          <div class="mt-6 mb-8 flex justify-center">
-            <a :href="route('auth.microsoft')" class="mr-2 flex items-center">
-              <img
-                class="h-8 w-auto"
-                src="/images/ms_signin_dark.svg"
-                alt="Microsoft"
-              />
-            </a>
-          </div>
-
-          <div class="horizontal-line border-b border-gray-300 text-center">
-            <span class="bg-white px-4 text-gray-600">or</span>
           </div>
 
           <text-input
@@ -107,7 +93,7 @@ export default {
   methods: {
     submit() {
       this.form.post(this.route("password.update"), {
-        onFinish: () => form.reset("password", "password_confirmation"),
+        onFinish: () => this.form.reset("password", "password_confirmation"),
       });
     },
   },

@@ -124,7 +124,7 @@ export default {
   methods: {
     submit() {
       this.form.post(this.route("register"), {
-        onFinish: () => form.reset("password", "password_confirmation"),
+        onFinish: () => this.form.reset("password", "password_confirmation"),
       });
     },
   },
