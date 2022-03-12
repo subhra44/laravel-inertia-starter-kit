@@ -59,7 +59,7 @@
                     whitespace-nowrap
                   "
                 >
-                  <span>{{ $page.props.auth.user.name }}</span>
+                  <span>{{ $page.props.auth.user.first_name }}</span>
                 </div>
                 <icon
                   class="
@@ -111,7 +111,7 @@
             "
           />
           <div
-            class="md:flex-1 px-4 py-8 md:p-10 md:overflow-y-auto"
+            class="md:flex-1 px-4 py-6 md:p-6 md:overflow-y-auto"
             scroll-region
           >
             <flash-messages />

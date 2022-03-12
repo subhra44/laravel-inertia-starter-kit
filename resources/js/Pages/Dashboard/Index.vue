@@ -2,8 +2,8 @@
   <Head title="Dashboard" />
 
   <div>
-    <h1 class="mb-8 font-bold text-2xl">Dashboard</h1>
-    <p class="mb-8 leading-normal">
+    <h1 class="mb-5 font-bold text-base">Dashboard</h1>
+    <p class="mb-5 leading-normal">
       Hey there! Welcome to Laravel Inertia Starter Kit.
     </p>
   </div>
