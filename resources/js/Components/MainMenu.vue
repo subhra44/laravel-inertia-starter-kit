@@ -18,7 +18,7 @@
         </div>
       </Link>
     </div>
-    <!-- <div class="mb-2">
+    <div class="mb-2">
       <Link class="flex items-center group py-2" :href="route('users')">
         <icon
           name="users"
@@ -39,7 +39,7 @@
           Users
         </div>
       </Link>
-    </div> -->
+    </div>
   </div>
 </template>
 
