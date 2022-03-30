@@ -19,7 +19,11 @@
       </Link>
     </div>
     <div class="mb-2">
-      <Link class="flex items-center group py-2" :href="route('users')">
+      <Link
+        v-if="$page.props.auth.user.role == 'admin'"
+        class="flex items-center group py-2"
+        :href="route('users')"
+      >
         <icon
           name="users"
           class="w-4 h-4 mr-2"
